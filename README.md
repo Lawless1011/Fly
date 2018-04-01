@@ -1,2 +1,2 @@
 # Fly
-[PocketMine-MP Plugin] You can fly anytime!
+/fly で飛行の切り替えが出来ます
