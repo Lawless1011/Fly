@@ -11,25 +11,26 @@ use pocketmine\Player;
 
 class Main extends PluginBase implements Listener{
 
+	private $fly;
+
 	public function onEnable(){
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 	}
 
 	public function onJoin(PlayerJoinEvent $event){
-		$event->getPlayer()->fly = false;
+		$this->fly[$event->getPlayer()->getName()] = false;
 	}
 
-	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool{
+	public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
 		if(!$sender instanceof Player){
 			$sender->sendMessage("§cゲーム内で実行してください");
 			return true;
 		}
 
-		$bool = !$sender->fly;
-		$sender->fly = $bool;
+		$bool = !$this->fly[$sender->getName()];
+		$this->fly[$sender->getName()] = $bool;
 
-		$message = $bool ? "有効" : "無効";
-		$sender->sendMessage("飛行が".$message."になりました");
+		$sender->sendMessage("飛行が" . ($bool ? "有効" : "無効") . "になりました");
 
 		$sender->setAllowFlight($bool);
 		$sender->setFlying($bool);
