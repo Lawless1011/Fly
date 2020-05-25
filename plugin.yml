@@ -1,7 +1,7 @@
 name: Fly
 main: Nerahikada\Fly\Main
 version: 2.0.0
-api: [3.0.0, 4.0.0]
+api: 
 load: POSTWORLD
 author: ねらひかだ
 description: 飛べます！
